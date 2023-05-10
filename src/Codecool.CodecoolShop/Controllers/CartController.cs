@@ -19,6 +19,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Serilog.Events;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
+using System.Security.Claims;
 
 namespace Codecool.CodecoolShop.Controllers
 {
@@ -31,15 +32,17 @@ namespace Codecool.CodecoolShop.Controllers
         private readonly IMapper _mapper;
         private readonly ILogger<CartController> cartLogger;
         private readonly ShoppingCartLogic _shoppingCartLogic;
+        private readonly CartService _cartService;
 
 
-        public CartController(ILogger<ProductController> logger, ProductService productService, IMapper mapper, ILogger<CartController> cartLogger)
+        public CartController(ILogger<ProductController> logger, ProductService productService, IMapper mapper, ILogger<CartController> cartLogger, CartService cartService)
         {
             _logger = logger;
             _productService = productService;
             _mapper = mapper;
             this.cartLogger = cartLogger;
             _shoppingCartLogic = new ShoppingCartLogic();
+            _cartService = cartService;
         }
 
         public IActionResult ViewCart()
@@ -173,6 +176,8 @@ namespace Codecool.CodecoolShop.Controllers
                     $"{AppDomain.CurrentDomain.BaseDirectory}\\orders\\{cart.Id}_{DateTime.Now:yyyy-MM-dd-HH-mm-ss}.json";
 
                 SaveToFile.ToJson(jsonOrder, filePath);
+
+                _cartService.DeleteCart(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
                 //TODO send email to user about order
 

@@ -42,4 +42,11 @@ public class CartService
         var shoppingCart = JsonSerializer.Deserialize<ShoppingCart>(data);
         return shoppingCart;
     }
+
+    public void DeleteCart(string userId)
+    {
+        var databaseCart = _dbContext.Carts.FirstOrDefault(c => c.UserId == userId);
+        _dbContext.Carts.Remove(databaseCart);
+        _dbContext.SaveChanges();
+    }
 }
