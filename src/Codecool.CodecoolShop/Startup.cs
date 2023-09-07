@@ -1,3 +1,4 @@
+using System;
 using Codecool.CodecoolShop.Data;
 using Codecool.CodecoolShop.Mappings;
 using Codecool.CodecoolShop.Services;
@@ -26,7 +27,7 @@ namespace Codecool.CodecoolShop
 		{
 			services.AddControllersWithViews();
 			services.AddDbContext<CodeCoolShopDBContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("CodeCoolShop")));
+				options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString")));
 			services.AddDefaultIdentity<IdentityUser>()
 				.AddEntityFrameworkStores<CodeCoolShopDBContext>();
 

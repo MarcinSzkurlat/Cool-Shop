@@ -44,7 +44,5 @@ namespace Codecool.CodecoolShop.Services
                 .Include(product => product.Supplier)
                 .First(product => product.Id == id);
         }
-
-        
     }
 }

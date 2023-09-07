@@ -1,7 +1,6 @@
 ﻿using Codecool.CodecoolShop.Data;
 using Codecool.CodecoolShop.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Codecool.CodecoolShop
 {
@@ -17,7 +16,6 @@ namespace Codecool.CodecoolShop
 		public static IServiceCollection AddServices(this IServiceCollection services)
 		{
 			AddShop(services);
-			AddEmailHandling(services);
 
 			return services;
 		}
@@ -29,9 +27,5 @@ namespace Codecool.CodecoolShop
 			services.AddScoped<SupplierService>();
 			services.AddScoped<AddressService>();
 		}
-
-		private static void AddEmailHandling(IServiceCollection services)
-		{
-		}
-	}
+    }
 }

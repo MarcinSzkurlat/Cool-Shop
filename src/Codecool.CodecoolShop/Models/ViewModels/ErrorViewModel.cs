@@ -1,5 +1,3 @@
-using System;
-
 namespace Codecool.CodecoolShop.Models.ViewModels
 {
     public class ErrorViewModel

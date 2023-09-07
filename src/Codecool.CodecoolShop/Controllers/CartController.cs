@@ -99,10 +99,7 @@ namespace Codecool.CodecoolShop.Controllers
                 UserData = userData
             };
 
-
             _cartLogger.LogInformation("{@order}", newOrder);
-
-            
 
             HttpContext.Session.SetString("UserData", JsonSerializer.Serialize(userData));
             HttpContext.Session.SetString("OrderModel", JsonSerializer.Serialize(newOrder));
@@ -125,7 +122,6 @@ namespace Codecool.CodecoolShop.Controllers
             {
                 return View(payment);
             }
-
 
             HttpContext.Session.SetString("Payment", JsonSerializer.Serialize(payment));
             var newOrder = JsonSerializer.Deserialize<OrderModel>(HttpContext.Session.GetString("OrderModel"));

@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  db:
+   image: mcr.microsoft.com/mssql/server:2019-latest
+   ports:
+    - 1433:1433
+  codecool.codecoolshop:
+    image: ${DOCKER_REGISTRY-}codecoolcodecoolshop
+    build:
+      context: .
+      dockerfile: Codecool.CodecoolShop/Dockerfile

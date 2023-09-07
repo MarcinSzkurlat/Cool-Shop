@@ -1,7 +1,5 @@
 using Codecool.CodecoolShop.Models.UserData;
-using System.Security.Cryptography.X509Certificates;
 using Codecool.CodecoolShop.Models.Products;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Supplier = Codecool.CodecoolShop.Models.Products.Supplier;
@@ -27,6 +25,5 @@ public class CodeCoolShopDBContext : IdentityDbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Product>().HasOne(x => x.Supplier);
-        //modelBuilder.Entity<DatabaseCart>().HasOne(x => x.UserId);
     }
 }

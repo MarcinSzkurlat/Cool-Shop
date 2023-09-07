@@ -1,13 +1,9 @@
 using System;
-using System.Globalization;
 using System.IO;
 using Codecool.CodecoolShop.Controllers;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging.Configuration;
 using Serilog;
-using Serilog.Filters;
 using Serilog.Formatting.Json;
 
 namespace Codecool.CodecoolShop

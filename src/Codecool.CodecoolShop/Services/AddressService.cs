@@ -26,7 +26,6 @@ public class AddressService
                 DeleteExistingShippingAddress(shippingAddressModel.UserId);
                 _dbContext.ShippingAddressModels.Add(shippingAddressModel);
                 break;
-            _: ;
         }
 
         Save();
@@ -50,13 +49,11 @@ public class AddressService
         Save();
     }
 
-
     public void UpdateAddressWithUserId(FullBillingViewModel model, string userId)
     {
         model.BillingAddress.UserId = userId;
         model.ShippingAddress.UserId = userId;
     }
-
 
     public void Save()
     {

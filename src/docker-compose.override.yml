@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  db:
+   environment:
+    - ACCEPT_EULA=Y
+    - MSSQL_SA_PASSWORD=Password123?
+  codecool.codecoolshop:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionString=Server=db,1433;Database=CodeCoolShop;User Id=SA;Password=Password123?;Trusted_Connection=false;Encrypt=False;
+    ports:
+      - 5092:80
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

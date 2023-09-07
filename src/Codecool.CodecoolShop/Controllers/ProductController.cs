@@ -1,29 +1,23 @@
-using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Models.Products;
 using Codecool.CodecoolShop.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Codecool.CodecoolShop.Models.ViewModels;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 
 namespace Codecool.CodecoolShop.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ILogger<ProductController> _logger;
         private readonly ProductService _productService;
         private readonly SupplierService _supplierService;
         private readonly ShoppingCartService _shoppingCartLogic;
 
-        public ProductController(ILogger<ProductController> logger, ProductService productService, SupplierService supplierService)
+        public ProductController(ProductService productService, SupplierService supplierService)
         {
-            _logger = logger;
             _productService = productService;
             _supplierService = supplierService;
             _shoppingCartLogic = new ShoppingCartService();
@@ -69,8 +63,7 @@ namespace Codecool.CodecoolShop.Controllers
 
             return View(model);
         }
-
-
+        
         [HttpPost]
         public IActionResult Sort(ProductCategory? productCategory,int? supplierId)
         {
@@ -100,9 +93,7 @@ namespace Codecool.CodecoolShop.Controllers
 
             return View(model);
         }
-
-
-
+        
         public async Task<IActionResult> SortBySupplier()
         {
             return View();
